@@ -1,0 +1,120 @@
+name: iOS - Capturas UI y build
+
+# Ajustado al proyecto SabiasQue (Reto 3).
+env:
+  PROJECT: SabiasQue.xcodeproj
+  SCHEME: SabiasQue
+  APP_NAME: SabiasQue
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:            # te permite lanzarlo a mano desde la pestaña Actions
+
+# Si haces varios push seguidos, cancela los runs viejos y solo corre el ultimo.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------------------
+  # JOB 1: corre los UI tests en varios simuladores y sube capturas
+  # ---------------------------------------------------------------
+  capturas:
+    runs-on: macos-15           # revisa en la doc de GitHub cual es la imagen mas reciente
+    strategy:
+      fail-fast: false          # si falla un simulador, los demas siguen corriendo
+      matrix:
+        dispositivo:
+          - "iPhone SE (3rd generation)"   # pantalla chica: donde se rompen los layouts
+          - "iPhone 16"                    # tamano estandar
+          - "iPhone 16 Pro Max"            # pantalla grande
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mostrar version de Xcode disponible
+        run: xcodebuild -version
+      - name: Correr UI tests en ${{ matrix.dispositivo }}
+        run: |
+          xcodebuild test \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
+            -destination "platform=iOS Simulator,name=${{ matrix.dispositivo }},OS=latest" \
+            -resultBundlePath "TestResults.xcresult" \
+            -quiet
+      - name: Extraer capturas del bundle de resultados
+        if: always()            # importante: corre aunque el test falle, ahi es cuando mas sirven
+        run: |
+          brew install chargepoint/xcparse/xcparse
+          mkdir -p capturas
+          xcparse screenshots "TestResults.xcresult" capturas --test
+      - name: Subir capturas como artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          # nombre unico por dispositivo (los espacios y parentesis no se permiten bien)
+          name: capturas-${{ strategy.job-index }}
+          path: capturas
+          retention-days: 14
+      - name: Subir el .xcresult completo (util para depurar fallos)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcresult-${{ strategy.job-index }}
+          path: TestResults.xcresult
+          retention-days: 7
+
+  # ---------------------------------------------------------------
+  # JOB 2: genera un .ipa SIN FIRMAR para instalarlo en tu iPhone
+  #        con Sideloadly / AltStore usando tu Apple ID gratuito
+  # ---------------------------------------------------------------
+  ipa-sin-firmar:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Archive sin firma de codigo
+        run: |
+          xcodebuild archive \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "build/$APP_NAME.xcarchive" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            -quiet
+      - name: Empaquetar en .ipa
+        run: |
+          # Un .ipa es literalmente un zip con una carpeta Payload adentro.
+          mkdir -p build/Payload
+          cp -r "build/$APP_NAME.xcarchive/Products/Applications/$APP_NAME.app" build/Payload/
+          cd build
+          zip -qr "$APP_NAME-unsigned.ipa" Payload
+          ls -lh "$APP_NAME-unsigned.ipa"
+      - name: Subir el .ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipa-sin-firmar
+          path: build/*.ipa
+          retention-days: 14
+
+# ---------------------------------------------------------------
+# COMO USARLO
+#
+# 1. Este archivo ya esta en .github/workflows/ios-ci.yml dentro del zip.
+#    Solo sube la carpeta SabiasQue completa a un repo nuevo de GitHub.
+# 2. Haz el repo PUBLICO: en repos privados los minutos de macOS se
+#    descuentan a 10x y el plan Free se agota rapidisimo.
+# 3. El target SabiasQueUITests ya incluye un test (testFlujoCompletoDeLaApp)
+#    que recorre categoria -> dato curioso -> otro dato y adjunta 3 capturas
+#    con .lifetime = .keepAlways, asi que se guardan aunque el test pase.
+# 4. Descarga los artifacts desde la pestana Actions del repo, en la
+#    seccion "Artifacts" al final de cada run.
+# 5. Para instalar el .ipa en tu iPhone desde Windows:
+#    instala iTunes e iCloud (versiones de apple.com, NO las de Microsoft
+#    Store), abre Sideloadly, conecta el iPhone por cable, arrastra el .ipa
+#    e inicia sesion con tu Apple ID. La firma gratuita caduca a los 7 dias.
+#    Despues, en el iPhone: Ajustes > General > VPN y admin. de dispositivos
+#    > confia en tu perfil de desarrollador.
+# ---------------------------------------------------------------

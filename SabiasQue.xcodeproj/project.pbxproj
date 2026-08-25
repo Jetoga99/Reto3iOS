@@ -1,0 +1,388 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF65D5CB23ED7090F6D1E56B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9A5FB96BA8506D28C97CFC /* AppDelegate.m */; };
+		4F23CABC445F571F3D9B0BBF /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEA272EB598B656AC8B9FB0B /* CategoryViewController.m */; };
+		E5E3E38D2B60D47AD58CC910 /* FactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F260413FD52A1EB4734764 /* FactViewController.m */; };
+		3BF8AE332D54DFE89258FA0B /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C6CAC5E73F0110422366D1 /* DataStore.m */; };
+		FB8FB6378655EDEE5B2B8C7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE8F3A78153E4E62A19D496 /* main.m */; };
+		ED654425FF5DE3C5729DF81D /* SabiasQueUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489049A310B45CF975536725 /* SabiasQueUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D8CA9EF21006DFC179BAD28B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96BA2BD5DFDFBE30FC56EA1A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA4AEBDACEBC85CEFFCF7505;
+			remoteInfo = SabiasQue;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B8A0E200E5BE36F38685F6A7 /* SabiasQue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SabiasQue.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E846F8ABF10839AF7E7BC89D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5F9A5FB96BA8506D28C97CFC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		530820C1589110A88928FBEF /* CategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		FEA272EB598B656AC8B9FB0B /* CategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		59633F261F7B8A0360D6620A /* FactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FactViewController.h; sourceTree = "<group>"; };
+		80F260413FD52A1EB4734764 /* FactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FactViewController.m; sourceTree = "<group>"; };
+		A200A3865DF72BBAC64A6A4F /* DataStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStore.h; sourceTree = "<group>"; };
+		68C6CAC5E73F0110422366D1 /* DataStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataStore.m; sourceTree = "<group>"; };
+		FDE8F3A78153E4E62A19D496 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		100504B4BC4D1BF53653E3C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40D97367288A567CFBC0DF96 /* SabiasQueUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SabiasQueUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		489049A310B45CF975536725 /* SabiasQueUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SabiasQueUITests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9AD04BAD774EA3A1136855FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		898ADEA0E1EC424B4EC78EAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A5B7F8E8146C66A1212DD747 = {
+			isa = PBXGroup;
+			children = (
+				307EE6AE40BD498A5F4BF805 /* SabiasQue */,
+				95E0C32249A23B8E5C527C18 /* SabiasQueUITests */,
+				7344F7FCB04734D78A42A033 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7344F7FCB04734D78A42A033 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B8A0E200E5BE36F38685F6A7 /* SabiasQue.app */,
+				40D97367288A567CFBC0DF96 /* SabiasQueUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95E0C32249A23B8E5C527C18 /* SabiasQueUITests */ = {
+			isa = PBXGroup;
+			children = (
+				489049A310B45CF975536725 /* SabiasQueUITests.swift */,
+			);
+			path = SabiasQueUITests;
+			sourceTree = "<group>";
+		};
+		307EE6AE40BD498A5F4BF805 /* SabiasQue */ = {
+			isa = PBXGroup;
+			children = (
+				E846F8ABF10839AF7E7BC89D /* AppDelegate.h */,
+				5F9A5FB96BA8506D28C97CFC /* AppDelegate.m */,
+				530820C1589110A88928FBEF /* CategoryViewController.h */,
+				FEA272EB598B656AC8B9FB0B /* CategoryViewController.m */,
+				59633F261F7B8A0360D6620A /* FactViewController.h */,
+				80F260413FD52A1EB4734764 /* FactViewController.m */,
+				A200A3865DF72BBAC64A6A4F /* DataStore.h */,
+				68C6CAC5E73F0110422366D1 /* DataStore.m */,
+				FDE8F3A78153E4E62A19D496 /* main.m */,
+				100504B4BC4D1BF53653E3C3 /* Info.plist */,
+			);
+			path = SabiasQue;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CA4AEBDACEBC85CEFFCF7505 /* SabiasQue */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8F7C975EE2114EAE71FF172 /* Build configuration list for PBXNativeTarget "SabiasQue" */;
+			buildPhases = (
+				70EDAD87A7DB552886AC2701 /* Sources */,
+				9AD04BAD774EA3A1136855FC /* Frameworks */,
+				46019C0DE59C5B9AEE37D797 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SabiasQue;
+			productName = SabiasQue;
+			productReference = B8A0E200E5BE36F38685F6A7 /* SabiasQue.app */;
+			productType = "com.apple.product-type.application";
+		};
+		64475887B75FEF8CE9A83FF8 /* SabiasQueUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86B1BA8F0F5AA6F21610B885 /* Build configuration list for PBXNativeTarget "SabiasQueUITests" */;
+			buildPhases = (
+				FC027AE35A7A606FFE882A04 /* Sources */,
+				898ADEA0E1EC424B4EC78EAA /* Frameworks */,
+				51687A61714395E856704247 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1443C4B3EF2C7B0315A852EE /* PBXTargetDependency */,
+			);
+			name = SabiasQueUITests;
+			productName = SabiasQueUITests;
+			productReference = 40D97367288A567CFBC0DF96 /* SabiasQueUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96BA2BD5DFDFBE30FC56EA1A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1500;
+				ORGANIZATIONNAME = UVEG;
+				TargetAttributes = {
+					CA4AEBDACEBC85CEFFCF7505 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					64475887B75FEF8CE9A83FF8 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = CA4AEBDACEBC85CEFFCF7505;
+					};
+				};
+			};
+			buildConfigurationList = 0E0C7C568F08C8B006DDC5FB /* Build configuration list for PBXProject "SabiasQue" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = es;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				es,
+				Base,
+			);
+			mainGroup = A5B7F8E8146C66A1212DD747;
+			productRefGroup = 7344F7FCB04734D78A42A033 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA4AEBDACEBC85CEFFCF7505 /* SabiasQue */,
+				64475887B75FEF8CE9A83FF8 /* SabiasQueUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		46019C0DE59C5B9AEE37D797 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51687A61714395E856704247 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		70EDAD87A7DB552886AC2701 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF65D5CB23ED7090F6D1E56B /* AppDelegate.m in Sources */,
+				4F23CABC445F571F3D9B0BBF /* CategoryViewController.m in Sources */,
+				E5E3E38D2B60D47AD58CC910 /* FactViewController.m in Sources */,
+				3BF8AE332D54DFE89258FA0B /* DataStore.m in Sources */,
+				FB8FB6378655EDEE5B2B8C7F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC027AE35A7A606FFE882A04 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED654425FF5DE3C5729DF81D /* SabiasQueUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1443C4B3EF2C7B0315A852EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA4AEBDACEBC85CEFFCF7505 /* SabiasQue */;
+			targetProxy = D8CA9EF21006DFC179BAD28B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EEAC4DCB123C2938AC925108 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		62B6B4A6C5EE05942669D385 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		973C905E4D0B3E8921A26848 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SabiasQue/Info.plist;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uveg.SabiasQue";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D8EF75C35924A94F5E4FCA51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SabiasQue/Info.plist;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uveg.SabiasQue";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4379D278EABB8ECBF69026B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uveg.SabiasQueUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SabiasQue;
+			};
+			name = Debug;
+		};
+		8B05902CA584883E3C96FB81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.uveg.SabiasQueUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SabiasQue;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0E0C7C568F08C8B006DDC5FB /* Build configuration list for PBXProject "SabiasQue" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEAC4DCB123C2938AC925108 /* Debug */,
+				62B6B4A6C5EE05942669D385 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8F7C975EE2114EAE71FF172 /* Build configuration list for PBXNativeTarget "SabiasQue" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				973C905E4D0B3E8921A26848 /* Debug */,
+				D8EF75C35924A94F5E4FCA51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86B1BA8F0F5AA6F21610B885 /* Build configuration list for PBXNativeTarget "SabiasQueUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4379D278EABB8ECBF69026B2 /* Debug */,
+				8B05902CA584883E3C96FB81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 96BA2BD5DFDFBE30FC56EA1A /* Project object */;
+}
