@@ -19,17 +19,84 @@ concurrency:
 
 jobs:
   # ---------------------------------------------------------------
+  # JOB 0: pregunta al runner que simuladores tiene instalados de
+  #        verdad. Los nombres de dispositivo (ej. "iPhone SE (3rd
+  #        generation)") cambian entre versiones de Xcode, y si el
+  #        que pediste ya no existe en la imagen del runner,
+  #        xcodebuild falla con "Unable to find a device matching...".
+  #        Este job arma la lista de dispositivos en tiempo real.
+  # ---------------------------------------------------------------
+  detectar-dispositivos:
+    runs-on: macos-15
+    outputs:
+      dispositivos: ${{ steps.listar.outputs.dispositivos }}
+    steps:
+      - name: Mostrar version de Xcode disponible
+        run: xcodebuild -version
+      - name: Listar simuladores de iPhone disponibles (diagnostico)
+        run: xcrun simctl list devices available
+      - id: listar
+        name: Elegir un simulador chico, uno estandar y uno grande
+        shell: bash
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          import os
+          import subprocess
+
+          salida = subprocess.check_output(
+              ["xcrun", "simctl", "list", "devices", "available", "-j"]
+          )
+          data = json.loads(salida)
+
+          nombres = []
+          for runtime, dispositivos in data["devices"].items():
+              if "iOS" not in runtime:
+                  continue
+              for d in dispositivos:
+                  if d.get("isAvailable") and d["name"].startswith("iPhone"):
+                      nombres.append(d["name"])
+
+          nombres = sorted(set(nombres))
+          print("Simuladores de iPhone encontrados:", nombres)
+
+          def buscar(*claves_incluye, excluye=()):
+              for n in nombres:
+                  if all(c in n for c in claves_incluye) and not any(e in n for e in excluye):
+                      return n
+              return None
+
+          chico = buscar("SE") or buscar("mini")
+          grande = buscar("Pro Max") or buscar("Plus")
+          estandar = buscar("iPhone", excluye=("Pro", "Plus", "SE", "mini"))
+
+          elegidos = [n for n in [chico, estandar, grande] if n]
+          elegidos = list(dict.fromkeys(elegidos))  # sin duplicados, conserva el orden
+
+          # Red de seguridad: si no se pudo identificar ninguno de los tres
+          # por nombre, se usan los primeros que haya disponibles.
+          if not elegidos:
+              elegidos = nombres[:3]
+
+          if not elegidos:
+              raise SystemExit("No se encontro ningun simulador de iPhone disponible en el runner.")
+
+          print("Dispositivos elegidos para la matriz:", elegidos)
+
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"dispositivos={json.dumps(elegidos)}\n")
+          PYEOF
+
+  # ---------------------------------------------------------------
   # JOB 1: corre los UI tests en varios simuladores y sube capturas
   # ---------------------------------------------------------------
   capturas:
-    runs-on: macos-15           # revisa en la doc de GitHub cual es la imagen mas reciente
+    needs: detectar-dispositivos
+    runs-on: macos-15
     strategy:
       fail-fast: false          # si falla un simulador, los demas siguen corriendo
       matrix:
-        dispositivo:
-          - "iPhone SE (3rd generation)"   # pantalla chica: donde se rompen los layouts
-          - "iPhone 16"                    # tamano estandar
-          - "iPhone 16 Pro Max"            # pantalla grande
+        dispositivo: ${{ fromJson(needs.detectar-dispositivos.outputs.dispositivos) }}
     steps:
       - uses: actions/checkout@v4
       - name: Mostrar version de Xcode disponible
@@ -109,9 +176,15 @@ jobs:
 # 3. El target SabiasQueUITests ya incluye un test (testFlujoCompletoDeLaApp)
 #    que recorre categoria -> dato curioso -> otro dato y adjunta 3 capturas
 #    con .lifetime = .keepAlways, asi que se guardan aunque el test pase.
-# 4. Descarga los artifacts desde la pestana Actions del repo, en la
+# 4. El job "detectar-dispositivos" corre primero y le pregunta al runner
+#    que simuladores de iPhone tiene instalados de verdad (con
+#    "xcrun simctl list devices available"), en vez de asumir nombres fijos
+#    como "iPhone SE (3rd generation)" que pueden no existir en la imagen
+#    de Xcode que te toque. El paso "Listar simuladores..." de ese job
+#    imprime la lista completa por si quieres ver que hay disponible.
+# 5. Descarga los artifacts desde la pestana Actions del repo, en la
 #    seccion "Artifacts" al final de cada run.
-# 5. Para instalar el .ipa en tu iPhone desde Windows:
+# 6. Para instalar el .ipa en tu iPhone desde Windows:
 #    instala iTunes e iCloud (versiones de apple.com, NO las de Microsoft
 #    Store), abre Sideloadly, conecta el iPhone por cable, arrastra el .ipa
 #    e inicia sesion con tu Apple ID. La firma gratuita caduca a los 7 dias.
